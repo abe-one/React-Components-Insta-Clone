@@ -19,6 +19,20 @@ const App = () => {
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
   const [posts, setPosts] = useState(dummyData);
 
+  // const searchByInput = () => {
+  //   let inputText = document.getElementsByClassName("search-form").value;
+  //   // filter through each post returning all that include search value
+  //   // search post values of username, comments
+  //   // search comments values of username, text
+  //   setPosts(
+  //     posts.filter((post) => {
+  //       post.username.includes(inputText) ||
+  //         post.comments.username.includes(inputText) ||
+  //         posts.comments.text.includes(inputText);
+  //     })
+  //   );
+  // };
+
   const likePost = (postId) => {
     /*
       This function serves the purpose of increasing the number of likes by one, of the post with a given id.
@@ -38,7 +52,7 @@ const App = () => {
           return {
             ...post,
             likes: post.likes + 1,
-            likedByUser: true, //Set key tracking user like
+            likedByUser: true, //Set key tracking user likes
           };
         } else if (postId === post.id) {
           //Allow user to unlike
