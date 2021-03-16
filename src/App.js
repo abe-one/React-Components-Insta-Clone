@@ -34,12 +34,14 @@ const App = () => {
     setPosts(
       posts.map((post) => {
         if (postId === post.id && !post.likedByUser) {
+          //Prevent user from double liking
           return {
             ...post,
             likes: post.likes + 1,
-            likedByUser: true,
+            likedByUser: true, //Set key tracking user like
           };
         } else if (postId === post.id) {
+          //Allow user to unlike
           return {
             ...post,
             likes: post.likes - 1,
