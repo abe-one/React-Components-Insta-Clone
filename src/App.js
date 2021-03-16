@@ -39,6 +39,12 @@ const App = () => {
             likes: post.likes + 1,
             likedByUser: true,
           };
+        } else if (postId === post.id) {
+          return {
+            ...post,
+            likes: post.likes - 1,
+            likedByUser: false,
+          };
         } else {
           return post;
         }
