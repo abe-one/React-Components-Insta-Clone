@@ -18,6 +18,7 @@ const App = () => {
   // This state is the source of truth for the data inside the app. You won't be needing dummyData anymore.
   // To make the search bar work (which is stretch) we'd need another state to hold the search term.
   const [posts, setPosts] = useState(dummyData);
+  const [initialPosts, setInitialPosts] = useState(dummyData);
   const [search, setSearch] = useState("");
 
   const searchByInput = () => {
@@ -25,10 +26,11 @@ const App = () => {
     // };
     setSearch(document.querySelector(".search-form input").value);
     setSearch((search) => {
+      // update search value
       // console.log("1st ", search);
       if (search !== "") {
         setPosts(
-          posts.filter(
+          initialPosts.filter(
             (post) =>
               (post.username.includes(search) ? post : false) ||
               post.comments[0].text.includes(search)
@@ -36,22 +38,10 @@ const App = () => {
         );
         return search;
       } else {
-        setPosts(dummyData);
+        setPosts(initialPosts);
         return search;
       }
-    }); // update search value
-    console.log("2nd ", search);
-    // filter through each post returning all that include search value
-    // search post values of username, comments
-    // search comments values of username, text
-    // setPosts(
-    //   posts.filter((post) => {
-    //     post.username.includes("ph");
-    // ||
-    //       post.comments.username.includes(search) ||
-    //       posts.comments.text.includes(search);
-    //   })
-    // );
+    });
   };
 
   const likePost = (postId) => {
