@@ -10,7 +10,7 @@ import {
 import "./SearchBar.css";
 
 const SearchBar = (props) => {
-  const { searchByInput, posts, setPosts } = props;
+  const { searchByInput } = props;
   return (
     <div className="search-bar-wrapper">
       <div className="social">
@@ -20,7 +20,9 @@ const SearchBar = (props) => {
         <input
           type="text"
           placeholder="Search"
-          onChange={(e) => searchByInput()}
+          onChange={(e) => {
+            searchByInput();
+          }}
         />
       </form>
       <div className="social-wrapper">

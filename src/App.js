@@ -21,20 +21,38 @@ const App = () => {
   const [search, setSearch] = useState("");
 
   const searchByInput = () => {
-    console.log(document.querySelector(".search-form input").value);
+    // console.log(document.querySelector(".search-form input").value);
+    // };
+    setSearch(document.querySelector(".search-form input").value);
+    setSearch((search) => {
+      // console.log("1st ", search);
+      if (search !== "") {
+        setPosts(
+          posts.filter(
+            (post) =>
+              (post.username.includes(search) ? post : false) ||
+              post.comments[0].text.includes(search)
+          )
+        );
+        return search;
+      } else {
+        setPosts(dummyData);
+        return search;
+      }
+    }); // update search value
+    console.log("2nd ", search);
+    // filter through each post returning all that include search value
+    // search post values of username, comments
+    // search comments values of username, text
+    // setPosts(
+    //   posts.filter((post) => {
+    //     post.username.includes("ph");
+    // ||
+    //       post.comments.username.includes(search) ||
+    //       posts.comments.text.includes(search);
+    //   })
+    // );
   };
-  //   setSearch(document.getElementsByClassName("search-form").value);
-  //   // filter through each post returning all that include search value
-  //   // search post values of username, comments
-  //   // search comments values of username, text
-  //   setPosts(
-  //     posts.filter((post) => {
-  //       post.username.includes(inputText) ||
-  //         post.comments.username.includes(inputText) ||
-  //         posts.comments.text.includes(inputText);
-  //     })
-  //   );
-  // };
 
   const likePost = (postId) => {
     /*
@@ -79,6 +97,8 @@ const App = () => {
         searchByInput={searchByInput}
         posts={posts}
         setPosts={setPosts}
+        search={search}
+        setSearch={setSearch}
       />
       <Posts posts={posts} likePost={likePost} />
     </div>
